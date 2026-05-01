@@ -28,3 +28,5 @@ Also added:
 - `CLAUDE.md` with project context and the journal convention.
 - Verified parser against the real CSV: 377 rows → 328 cards (49 dropped — section stubs + `Zzz` rows). Breakdown: Power 278 (Leader 84, Attachment 137, Attachment-Weapon 1, Event-Instant 23, Resource 33) and Location 50 (Field 43, Forum 7). All 13 "Event - Clash" rows in the CSV are empty placeholders and currently get filtered out — once they have content they'll appear automatically.
 - Note for browser testing: I confirmed all four files serve over HTTP but I can't open a browser, so visual rendering is unverified — please load http://localhost:8765 and let me know if anything looks off.
+- Filled out `README.md` with start/stop instructions for the local HTTP server, plus a quick layout reference.
+- Direct push to `main` was blocked by the harness's safety rule; commit `0d864bb` is local-only until the user adds a permission allow-rule or asks for a feature-branch push.
