@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BertCards Deck Builder</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>BertCards Deck Builder</h1>
+    <div class="header-actions">
+      <button id="share-btn" type="button">Share</button>
+      <button id="clear-btn" type="button">Clear deck</button>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <section class="browser" aria-label="Card browser">
+      <div class="browser-controls">
+        <input id="search" type="search" placeholder="Search cards by name or effect…">
+        <select id="filter-category">
+          <option value="">All categories</option>
+          <option value="Power">Power</option>
+          <option value="Location">Location</option>
+        </select>
+        <select id="filter-type">
+          <option value="">All types</option>
+        </select>
+      </div>
+      <div id="card-list" class="card-list" aria-live="polite">
+        <p class="empty-state">Loading cards…</p>
+      </div>
+    </section>
+
+    <aside class="deck-panel" aria-label="Current deck">
+      <div class="zone" data-zone="exemplar">
+        <h2>Exemplar <span class="zone-count" id="count-exemplar">0/1</span></h2>
+        <ul class="zone-list" id="zone-exemplar"></ul>
+      </div>
+      <div class="zone" data-zone="power">
+        <h2>Power deck <span class="zone-count" id="count-power">0/30</span></h2>
+        <ul class="zone-list" id="zone-power"></ul>
+      </div>
+      <div class="zone" data-zone="location">
+        <h2>Location deck <span class="zone-count" id="count-location">0/6</span></h2>
+        <ul class="zone-list" id="zone-location"></ul>
+      </div>
+      <div id="validation" class="validation"></div>
+    </aside>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

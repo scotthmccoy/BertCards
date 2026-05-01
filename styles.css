@@ -1,0 +1,302 @@
+:root {
+  --bg: #1a1d24;
+  --bg-elev: #242832;
+  --bg-elev-2: #2e333f;
+  --border: #3a4050;
+  --text: #e6e8ec;
+  --text-dim: #9ba0ab;
+  --accent: #e0a458;
+  --accent-dim: #8a6a3d;
+  --power: #c97373;
+  --location: #6ba16b;
+  --exemplar: #c9a84a;
+  --danger: #e06c6c;
+  --ok: #6ba16b;
+  --radius: 6px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  background: var(--bg-elev);
+  border-bottom: 1px solid var(--border);
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+}
+
+.header-actions { display: flex; gap: 0.5rem; }
+
+button {
+  background: var(--bg-elev-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+button:hover { background: var(--border); }
+button.primary { background: var(--accent); color: #1a1d24; border-color: var(--accent); }
+button.primary:hover { background: #f0b46a; }
+button.danger { color: var(--danger); }
+button:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.app-main {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 1rem;
+  padding: 1rem;
+  flex: 1;
+  min-height: 0;
+}
+
+@media (max-width: 900px) {
+  .app-main { grid-template-columns: 1fr; }
+}
+
+/* Browser */
+.browser {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.browser-controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+.browser-controls input,
+.browser-controls select {
+  background: var(--bg-elev);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.4rem 0.6rem;
+  font-size: 0.9rem;
+}
+.browser-controls input { flex: 1; min-width: 200px; }
+
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.6rem;
+  overflow-y: auto;
+  align-content: start;
+  padding-right: 0.25rem;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  color: var(--text-dim);
+  text-align: center;
+  padding: 2rem;
+}
+
+.card {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.6rem 0.7rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transition: background 0.1s, transform 0.05s;
+}
+.card:hover { background: var(--bg-elev-2); }
+.card:active { transform: scale(0.99); }
+
+.card[data-category="Power"] { border-left-color: var(--power); }
+.card[data-category="Location"] { border-left-color: var(--location); }
+
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+.card-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+.card-name.unnamed { color: var(--text-dim); font-style: italic; font-weight: 500; }
+.card-cost {
+  background: var(--bg-elev-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0 0.5rem;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+.tag {
+  background: var(--bg-elev-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.05rem 0.45rem;
+}
+.tag.control { color: var(--text); }
+
+.card-effect {
+  font-size: 0.82rem;
+  line-height: 1.35;
+  color: var(--text);
+  white-space: pre-wrap;
+}
+.card-resolution {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  border-top: 1px dashed var(--border);
+  padding-top: 0.35rem;
+  white-space: pre-wrap;
+}
+
+/* Deck panel */
+.deck-panel {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  overflow-y: auto;
+}
+.zone h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  margin: 0 0 0.4rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.zone-count {
+  font-family: ui-monospace, monospace;
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.85rem;
+}
+.zone-count.over { color: var(--danger); }
+.zone-count.full { color: var(--ok); }
+
+.zone-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-height: 1.5rem;
+}
+.zone[data-zone="exemplar"] .zone-list { min-height: 2.5rem; }
+
+.zone-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--bg-elev-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.3rem 0.5rem;
+  font-size: 0.82rem;
+}
+.zone-item .zi-qty {
+  background: var(--accent);
+  color: #1a1d24;
+  border-radius: 999px;
+  padding: 0 0.45rem;
+  font-weight: 700;
+  font-size: 0.75rem;
+  min-width: 1.5rem;
+  text-align: center;
+}
+.zone-item .zi-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.zone-item .zi-name.unnamed { color: var(--text-dim); font-style: italic; }
+.zone-item button {
+  padding: 0.1rem 0.4rem;
+  font-size: 0.75rem;
+}
+
+.validation {
+  font-size: 0.85rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: var(--radius);
+  background: var(--bg-elev-2);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+}
+.validation.valid { color: var(--ok); border-color: var(--ok); }
+.validation.invalid { color: var(--danger); border-color: var(--danger); }
+
+/* Card actions inline (set as exemplar) */
+.card-actions {
+  display: flex;
+  gap: 0.3rem;
+  margin-top: 0.2rem;
+}
+.card-actions button {
+  font-size: 0.72rem;
+  padding: 0.2rem 0.5rem;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(2rem);
+  background: var(--bg-elev-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.5rem 0.85rem;
+  font-size: 0.85rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
